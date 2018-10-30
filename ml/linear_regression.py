@@ -4,6 +4,7 @@ import numpy as np
 from sklearn import linear_model
 from functools import reduce
 # import matplotlib.pyplot as plt
+import time
 
 
 def prediction(data):
@@ -19,11 +20,15 @@ def prediction(data):
     # create linear regression model
     regr = linear_model.LinearRegression()
     regr.fit(X, y)
-    y_predict = list(map(lambda x: x * regr.coef_ + regr.intercept_, X))
+    # y_predict = list(map(lambda x: x * regr.coef_ + regr.intercept_, X))
     # Prediction Data
-    # predict data points
-    prediction = reduce((lambda acc, next: acc + next),
-                        y_predict) / len(y_predict)
+    # extend by prediction data set
+    X_future = np.array(range(indeterminate['date'][0], time.time()))
+    X_future = X_future.reshape(-1, 1)
+    # predict based on extended data
+    future_predict = list(
+        map(lambda x: x * regr.coef_ + regr.intercept_, X_future))
+    prediction = future_predict[len(future_predict) - 1]
     # graph plotting commands
     # plt.plot(X, y_predict)
     # plt.scatter(X, y)
