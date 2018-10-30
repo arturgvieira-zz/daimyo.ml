@@ -31,10 +31,8 @@ export default class Data extends Event.EventEmitter {
                 );
                 result.feature.push(f.base_amount / f.counter_amount / 100);
             });
-            console.log('Trade Data Points:', trades.length);
         } else {
             result = await this.fetch({ buy, sell });
-            console.log('Fetching Data Points:');
         }
 
         return result;
@@ -67,9 +65,9 @@ export default class Data extends Event.EventEmitter {
                       assetSell._embedded.records[0].asset_type
                   }&counter_asset_code=${sell}`
                 : '&counter_asset_type=native'
-        }&limit=200&order=asc&resolution=300000&start_time=${moment()
+        }&limit=200&order=asc&resolution=86400000&start_time=${moment()
             .utc(Date.now())
-            .subtract(2, 'days')
+            .subtract(200, 'days')
             .valueOf()}&end_time=${moment()
             .utc(Date.now())
             .valueOf()}`;
@@ -82,7 +80,7 @@ export default class Data extends Event.EventEmitter {
                 const trades = json._embedded.records.map((item) => item);
                 this.state.query = trades.concat(this.state.trades);
                 // if (result) console.log('Data Query: ', result);
-                return json._links.next && json._links.next.href;
+                // return json._links.next && json._links.next.href;
             });
         if (this.state.query.length > 0) {
             const date = this.state.query.map((item) =>

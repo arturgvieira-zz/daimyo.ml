@@ -2,7 +2,8 @@ import redis
 import linear_regression as lr
 import json
 # Prod
-# redis_db = redis.from_url("REDIS URL")
+# redis_db = redis.from_url(
+# "Redis URL")
 
 # Dev
 # redis_db = redis.StrictRedis(host='localhost', port=6379, db=0)
