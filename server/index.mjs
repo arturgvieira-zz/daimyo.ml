@@ -16,10 +16,10 @@ const Data = new DataObject();
 // client.connect();
 
 // Prod
-// const store = redis.createClient('Redis URL');
+const store = redis.createClient('Redis URL');
 // Dev
 // const store = redis.createClient('redis://localhost:6379');
-const store = redis.createClient('redis://172.17.0.2:6379');
+// const store = redis.createClient('redis://172.17.0.2:6379');
 
 store.on('error', (err) => {
     console.log('🚨 ', err.message);

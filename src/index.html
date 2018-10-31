@@ -43,7 +43,7 @@
             var oReq = new XMLHttpRequest();
             oReq.addEventListener("load", reqListener);
 
-            oReq.open("POST", "https://daimyo.ml/model", true);
+            oReq.open("POST", "https://localhost:8080/model", true);
             oReq.setRequestHeader("Content-Type", "application/json");
             oReq.send(JSON.stringify(values));
         }

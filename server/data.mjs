@@ -2,6 +2,7 @@ import Event from 'events';
 import request from 'request-promise';
 import moment from 'moment';
 import _ from 'lodash';
+import StellarSdk from 'stellar-sdk';
 
 export default class Data extends Event.EventEmitter {
     constructor() {
@@ -12,6 +13,7 @@ export default class Data extends Event.EventEmitter {
             query: [],
             assets: []
         };
+        this.server = new StellarSdk.Server(this.state.url);
     }
 
     async get({ buy, sell }) {
