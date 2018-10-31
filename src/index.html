@@ -1,53 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
 
-<head>
-    <meta charset="utf-8">
+        <title>daimyo.ml</title>
+        <meta name="description" content="daimyo.ml" />
+        <meta name="author" content="arturgvieira" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
 
-    <title>daimyo.ml</title>
-    <meta name="description" content="daimyo.ml">
-    <meta name="author" content="arturgvieira">
-    <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
-
-<body>
-    <div class="content_container">
-        <img class="content_image" src="resources/fan.jpg" />
-        <p> ML Server Online </p>
-        <div class="content_marker"></div>
-    </div>
-    <div class="interactive_content">
-        <input type="text" id="sell" placeholder="Sell" />
-        <input type="text" id="buy" placeholder="Buy" />
-    </div>
-    <div class="interactive_button">
-        <button onclick="submit()">Submit</button>
-    </div>
-    <div>
-        <div id="result"></div>
-    </div>
-    <script>
-        function reqListener() {
-            document.getElementById('result').innerHTML = this.responseText.replace('[', '').replace(']', '').substring(1, (this.responseText.length - 3));
-        }
-        function submit() {
-            var sell = document.getElementById('sell').value;
-            var buy = document.getElementById('buy').value;
-            var values = {
-                query: {
-                    sell: sell,
-                    buy: buy
-                }
+    <body>
+        <div class="content_container">
+            <img class="content_image" src="resources/fan.jpg" />
+            <p>ML Server Online</p>
+            <div class="content_marker"></div>
+        </div>
+        <div class="interactive_content">
+            <input type="text" id="sell" placeholder="Sell" />
+            <input type="text" id="buy" placeholder="Buy" />
+        </div>
+        <div class="interactive_button">
+            <button onclick="submit()">Submit</button>
+        </div>
+        <div><div id="result"></div></div>
+        <script>
+            function reqListener() {
+                document.getElementById('result').innerHTML = this.responseText;
             }
-            var oReq = new XMLHttpRequest();
-            oReq.addEventListener("load", reqListener);
+            function submit() {
+                var sell = document.getElementById('sell').value;
+                var buy = document.getElementById('buy').value;
+                var values = {
+                    query: {
+                        sell: sell,
+                        buy: buy
+                    }
+                };
+                var oReq = new XMLHttpRequest();
+                oReq.addEventListener('load', reqListener);
 
-            oReq.open("POST", "http://localhost:8080/model", true);
-            oReq.setRequestHeader("Content-Type", "application/json");
-            oReq.send(JSON.stringify(values));
-        }
-    </script>
-</body>
-
+                oReq.open('POST', 'https://daimyo.ml/model', true);
+                oReq.setRequestHeader('Content-Type', 'application/json');
+                oReq.send(JSON.stringify(values));
+            }
+        </script>
+    </body>
 </html>

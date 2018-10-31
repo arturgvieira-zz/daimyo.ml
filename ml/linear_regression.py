@@ -22,7 +22,7 @@ def prediction(data):
     regr.fit(X, y)
     # Prediction Data
     # y_predict = list(map(lambda x: x * regr.coef_ + regr.intercept_, X))
-    # graph plotting commands
+    # # graph plotting commands
     # plt.scatter(X, y)
     # plt.plot(X, y_predict, 'm')
     # plt.show()

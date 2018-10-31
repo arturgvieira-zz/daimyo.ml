@@ -18,6 +18,7 @@
         "pg": "^7.5.0",
         "redis": "^2.8.0",
         "request": "^2.88.0",
-        "request-promise": "^4.2.2"
+        "request-promise": "^4.2.2",
+        "stellar-sdk": "^0.11.0"
     }
 }
